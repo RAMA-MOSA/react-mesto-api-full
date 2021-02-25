@@ -3,22 +3,21 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cardsRoutes = require('./routes/cards');
 const usersRoutes = require('./routes/users');
-const notFoundRouter = require('./routes/notFound');
-const ErrorFound = require('./errors/not-found-error');
+const ErrorFound = require('./errors/error-found');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-require('dotenv').config();////вопросики
+require('dotenv').config();
 const cors = require('cors');
 const { errors, celebrate, Joi } = require('celebrate');
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
 const app = express();
-//const allowedCors = [
-//];
+const allowedCors = [
+];
 
-//app.use(cors({
-//  origin: allowedCors,
-//}));
+app.use(cors({
+  origin: allowedCors,
+}));
 
 const { PORT = 3000 } = process.env;
 
@@ -26,19 +25,19 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
-  //useUnifiedTopology: true,
+  useUnifiedTopology: true,
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(requestLogger);
-//app.get('/crash-test', () => {
-//  setTimeout(() => {
-//    throw new Error('Сервер сейчас упадёт');
-//  }, 0);
-//});
+app.use(requestLogger);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
-app.post(//все проверить
+app.post(
   '/signin',
   celebrate({
     body: Joi.object().keys({
@@ -46,10 +45,10 @@ app.post(//все проверить
       password: Joi.string().required().min(8).max(30),
     }),
   }),
-  login
+  login,
 );
 
-app.post(//все проверить
+app.post(
   '/signup',
   celebrate({
     body: Joi.object().keys({
@@ -62,7 +61,7 @@ app.post(//все проверить
         .regex(/^(https?:\/\/)?([\da-z.-]+).([a-z.]{2,6})([/\w.-]*)*\/?$/),
     }),
   }),
-  createUser
+  createUser,
 );
 
 app.use('/', cardsRoutes);
@@ -71,9 +70,7 @@ app.all('*', () => {
   throw new ErrorFound('Запрашиваемый ресурс не найден');
 });
 
-
-
-app.use(errorLogger);//проверить все
+app.use(errorLogger);
 app.use(errors());
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
@@ -90,8 +87,6 @@ app.use((err, req, res, next) => {
   }
   next();
 });
-
-
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
