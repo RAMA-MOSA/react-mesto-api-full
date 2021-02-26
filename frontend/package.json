@@ -9,15 +9,15 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1"
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./dist/* ramamosa@178.154.235.28:/home/ramamosa/frontend"
+    "deploy": "npm run build && scp -r ./build/* ramamosa@178.154.235.28:/home/ramamosa/frontend"
   },
   "eslintConfig": {
     "extends": [
