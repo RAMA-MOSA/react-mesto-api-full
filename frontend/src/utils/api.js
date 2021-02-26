@@ -92,7 +92,7 @@ class Api {
 };
 
 const api = new Api({
-    baseUrl: 'https://api.mesto-server.students.nomoreparties.icu',
+    baseUrl: 'https://api.m-s.students.nomoreparties.icu',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
