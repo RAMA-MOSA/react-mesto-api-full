@@ -1,0 +1,9 @@
+.profile__box{
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width:619px){
+    .profile__box {
+        margin-bottom: 14px;
+    }}

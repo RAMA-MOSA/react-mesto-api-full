@@ -1,0 +1,13 @@
+.header__container-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 942px) {
+  .header__container-main {
+    padding: 0px 30px 0;
+  }
+}

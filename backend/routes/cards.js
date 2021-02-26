@@ -9,7 +9,7 @@ cardsRouter.get('/cards', getCards);
 
 cardsRouter.post(
   '/cards',
-  celebrate({//проверить все
+  celebrate({
     body: Joi.object().keys({
       name: Joi.string().required().min(2).max(30),
       link: Joi.string().required()
@@ -21,7 +21,7 @@ cardsRouter.post(
 
 cardsRouter.delete(
   '/cards/:cardId',
-  celebrate({//проверить
+  celebrate({
     body: Joi.object().keys({
       cardId: Joi.string().hex().length(24),
     }),
@@ -30,8 +30,8 @@ cardsRouter.delete(
 );
 
 cardsRouter.put(
-  '/cards/:cardId/likes',//уточнить
-  celebrate({//проверить
+  '/cards/:cardId/likes',
+  celebrate({
     body: Joi.object().keys({
       cardId: Joi.string().hex().length(24),
     }),
@@ -43,7 +43,7 @@ cardsRouter.delete(
   '/cards/:cardId/likes',
   celebrate({
     body: Joi.object().keys({
-      cardId: Joi.string().hex().length(24),//проверить
+      cardId: Joi.string().hex().length(24),
     }),
   }),
   dislikeCard,

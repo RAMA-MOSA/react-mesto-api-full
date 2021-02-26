@@ -9,7 +9,7 @@ usersRouter.get('/users', getUsers);
 
 usersRouter.get(
   '/users/:id',
-  celebrate({//проверить все
+  celebrate({
     params: Joi.object().keys({
       id: Joi.string().required().hex().min(24)
         .max(24),
@@ -24,7 +24,7 @@ usersRouter.patch(
   '/users/me',
   celebrate({
     body: Joi.object().keys({
-      name: Joi.string().min(2).max(30),//проверить все
+      name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
     }),
   }),

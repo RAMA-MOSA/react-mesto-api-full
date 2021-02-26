@@ -38,7 +38,7 @@ const deleteCard = (req, res, next) => {
         throw new ErrorForbidden('Нельзя удалить чужую карточку.');
       } else {
         Card.findByIdAndDelete(req.params.cardId)
-          .then((deletedCard) => {//пересмотреть этот момент
+          .then((deletedCard) => {
             res.status(200).send(deletedCard);
           })
           .catch(next);
@@ -49,12 +49,12 @@ const deleteCard = (req, res, next) => {
 
 const likeCard = (req, res, next) => {
   // eslint-disable-next-line prefer-destructuring
-  const cardId = req.params.cardId;//пересмотреть этот момент
+  const cardId = req.params.cardId;
   User.findById(req.user._id)
     .then((user) => {
       Card.findByIdAndUpdate(
         { _id: cardId },
-        { $addToSet: { likes: user._id } },//проверить работоспособность
+        { $addToSet: { likes: user._id } },
         { new: true },
       )
         .then((card) => {
@@ -67,7 +67,7 @@ const likeCard = (req, res, next) => {
 
 const dislikeCard = (req, res, next) => {
   // eslint-disable-next-line prefer-destructuring
-  const cardId = req.params.cardId;//пересмотреть этот момент
+  const cardId = req.params.cardId;
   User.findById(req.user._id)
     .then((user) => {
       Card.findByIdAndUpdate(

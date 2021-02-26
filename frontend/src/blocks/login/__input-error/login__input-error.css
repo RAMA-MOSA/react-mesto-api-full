@@ -1,0 +1,17 @@
+.login__input-error {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .3s, opacity .3s;
+    width: 358px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 1.25;
+    color: #FF0000;
+}
+
+@media screen and (max-width: 767px) {
+  .login__input-error {
+    width: 260px;
+  }
+}

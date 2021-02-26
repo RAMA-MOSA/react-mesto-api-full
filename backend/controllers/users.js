@@ -5,6 +5,7 @@ const ErrorFound = require('../errors/error-found');
 const ErrorRequest = require('../errors/error-request');
 const ErrorAuth = require('../errors/error-auth');
 const ErrorConflict = require('../errors/error-conflict');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = (req, res) => {
@@ -87,7 +88,7 @@ const getUserById = (req, res, next) => {
 };
 
 const createUser = (req, res, next) => {
-  bcrypt.hash(req.body.password, 10)//почему 10?
+  bcrypt.hash(req.body.password, 10)
     .then((hash) => User.create({
       name: req.body.name,
       about: req.body.about,
@@ -108,8 +109,8 @@ const createUser = (req, res, next) => {
       if (err.name === 'ValidationError') {
         throw new ErrorRequest(err.message);
       }
-      if (err.code === 11000) {//возможно стоит этот блок убрать
-        throw new ErrorConflict(`Пользователь с таким email уже существует.`);
+      if (err.code === 11000) {
+        throw new ErrorConflict('Пользователь с таким email уже существует.');
       }
     })
     .catch(next);

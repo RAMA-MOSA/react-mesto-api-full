@@ -1,0 +1,19 @@
+.elements__box{
+    max-width: 882px;
+    margin: 0 auto 66px;
+    display: grid;
+    column-gap: 18px;
+    row-gap: 21px;
+    grid-template-columns: repeat(auto-fill, 282px);
+    justify-content: center;
+    padding: 0;
+}
+@media screen and (max-width:925px){
+    .elements__box {
+        margin-left: 19px;
+        margin-right: 19px;
+    }}
+@media screen and (max-width:619px){
+    .elements__box {
+        margin-bottom: 48px;
+    }}

@@ -6,7 +6,9 @@ const usersRoutes = require('./routes/users');
 const ErrorFound = require('./errors/error-found');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 require('dotenv').config();
+// eslint-disable-next-line import/order
 const cors = require('cors');
+// eslint-disable-next-line import/order
 const { errors, celebrate, Joi } = require('celebrate');
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
@@ -63,6 +65,8 @@ app.post(
   }),
   createUser,
 );
+
+app.use(auth);
 
 app.use('/', cardsRoutes);
 app.use('/', usersRoutes);

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const ErrorAuth = require('../errors/error-auth');//возможно нужно пересмотреть вывод ошибки посредством другого файла
+const ErrorAuth = require('../errors/error-auth');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
