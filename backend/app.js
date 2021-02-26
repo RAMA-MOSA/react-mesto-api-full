@@ -15,8 +15,8 @@ const auth = require('./middlewares/auth');
 
 const app = express();
 const allowedCors = [
-  'https://mesto-server.students.nomoreparties.space',
-  'https://api.mesto-server.students.nomoreparties.icu',
+  'https://m-s.students.nomoreparties.icu',
+  'https://api.m-s.students.nomoreparties.icu',
 ];
 
 app.use(cors({
