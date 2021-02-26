@@ -45,7 +45,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  baseUrl: 'https://api.mesto-server.students.nomoreparties.icu',
+  baseUrl: 'https://api.m-s.students.nomoreparties.icu',
   headers: {
     'Content-Type': 'application/json'
   }
