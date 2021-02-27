@@ -1,8 +1,12 @@
 import React from 'react';
+import Structure from '../Structure/Structure';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../hook/useFormWithValidation';
 
 const Register = ({ onRegistration }) => {
+  const linkForm = (
+    <p className="login__text" > Уже зарегистрированы? <Link className="login__link" to='/sign-in'> Войти </Link> </p>
+  )
   const {
     values,
     errors,
@@ -18,10 +22,14 @@ const Register = ({ onRegistration }) => {
   }
 
   return ( 
-    <div className="login page__login">
-      <h2 className="login__title">Регистрация</h2>
-      <form className="login__form" onSubmit={handleSubmit}>
-        <input
+    <Structure
+      title="Регистрация"
+      buttonText="Зарегистрироваться"
+      isValid={isValid}
+      onSubmit={handleSubmit}
+      linkForm={linkForm}
+    >
+      <input
           className="login__input login__email"
           placeholder="Email"
           id="login-email"
@@ -32,14 +40,14 @@ const Register = ({ onRegistration }) => {
           maxLength="30"
           value={values.email || ''}
           onChange={handleChange}
-        />
-        <span
+      />
+      <span
         className={errors.email ? 'login__input-error login__input-error_active' : 'login__input-error'}
         id="login-email-error"
       >
         {errors.email}
       </span>
-        <input
+      <input
           className="login__input login__password"
           placeholder="Пароль"
           id="login-password"
@@ -49,31 +57,14 @@ const Register = ({ onRegistration }) => {
           name="password"
           value={values.password || ''}
           onChange={handleChange}
-        />
-        <span
+      />
+      <span
         className={errors.password ? 'login__input-error login__input-error_active' : 'login__input-error'}
         id="login-password-error"
       >
         {errors.password}
       </span>
-        <button className={!isValid ?
-          "login__button login__button_inactive"
-        :
-          "login__button"
-        }
-        type="submit"
-        disabled={!isValid}>
-          Зарегистрироваться
-        </button>
-        <p className="login__text" >
-          Уже зарегистрированы?
-          <Link className="login__link" to='/sign-in'>
-            {' '}
-            Войти
-          </Link>
-        </p>
-      </form>
-    </div>
+    </Structure>
   );
 }
 
