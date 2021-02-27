@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../hook/useFormWithValidation';
 
-function Register({ onRegistration }) {
+const Register = ({ onRegistration }) => {
   const {
     values,
     errors,

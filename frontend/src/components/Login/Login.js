@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormWithValidation } from '../../hook/useFormWithValidation';
 
-function Login({ onAuthorization, onCheckToken }) {
+const Login = ({ onAuthorization, onCheckToken }) => {
   const {
     values,
     errors,
