@@ -15,8 +15,8 @@ const auth = require('./middlewares/auth');
 
 const app = express();
 const allowedCors = [
-  'http://m-s.students.nomoredomains.icu',
-  'http://api.m-s.students.nomoredomains.icu',
+  'https://m-s.students.nomoredomains.icu',
+  'https://api.m-s.students.nomoredomains.icu',
   'http://localhost:3001',
 ];
 
