@@ -15,8 +15,8 @@ const auth = require('./middlewares/auth');
 
 const app = express();
 const allowedCors = [
-  'https://m-s.students.nomoreparties.icu',
-  'https://api.m-s.students.nomoreparties.icu',
+  'https://m-s.students.nomoredomains.icu',
+  'https://api.m-s.students.nomoredomains.icu',
 ];
 
 app.use(cors({
