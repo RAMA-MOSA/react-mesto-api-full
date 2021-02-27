@@ -160,7 +160,7 @@ function App() {
           history.push('/sign-in')
         },
         (err) => {
-          console.log(err);///////////
+          console.log(err);
           setIsSuccessSignUp(false);
           handleInfoTooltipPopupOpen();
         })
@@ -175,7 +175,7 @@ function App() {
           setAutorizationUserEmail(data.email);
           history.push('/');
         },
-        (err) => {///////////
+        (err) => {
           console.log(err);
         }
       )

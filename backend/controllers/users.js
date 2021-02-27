@@ -8,18 +8,12 @@ const ErrorConflict = require('../errors/error-conflict');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-const getUsers = (req, res) => {
+const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
-      if (users.length === 0) {
-        res.status(404).send({ message: 'Нет пользователей.' });
-        return;
-      }
       res.status(200).send(users);
     })
-    .catch((err) => {
-      res.status(500).send({ message: `Ошибка на сервере: ${err}` });
-    });
+    .catch(next);
 };
 
 const updateCurrentUser = (req, res, next) => {

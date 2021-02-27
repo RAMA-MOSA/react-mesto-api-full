@@ -47,14 +47,14 @@ const deleteCard = (req, res, next) => {
     .catch(next);
 };
 
-const likeCard = (req, res, next) => {
+const likeCard = (req, res, next) => {//пересмотреть этот блок
   // eslint-disable-next-line prefer-destructuring
-  const cardId = req.params.cardId;
+  const { cardId } = req.params;
   User.findById(req.user._id)
     .then((user) => {
       Card.findByIdAndUpdate(
         { _id: cardId },
-        { $addToSet: { likes: user._id } },
+        { $addToSet: { likes: user.id } },
         { new: true },
       )
         .then((card) => {
@@ -65,9 +65,9 @@ const likeCard = (req, res, next) => {
     .catch(next);
 };
 
-const dislikeCard = (req, res, next) => {
+const dislikeCard = (req, res, next) => {//и этот
   // eslint-disable-next-line prefer-destructuring
-  const cardId = req.params.cardId;
+  const { cardId } = req.params;
   User.findById(req.user._id)
     .then((user) => {
       Card.findByIdAndUpdate(

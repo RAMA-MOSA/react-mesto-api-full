@@ -17,6 +17,7 @@ const app = express();
 const allowedCors = [
   'https://m-s.students.nomoredomains.icu',
   'https://api.m-s.students.nomoredomains.icu',
+  'http://localhost:3001',
 ];
 
 app.use(cors({
@@ -74,7 +75,7 @@ app.use(auth);
 app.use('/', cardsRoutes);
 app.use('/', usersRoutes);
 app.all('*', () => {
-  throw new ErrorFound('Запрашиваемый ресурс не найден');
+  throw new ErrorFound('Запрашиваемый ресурс не найден.');
 });
 
 app.use(errorLogger);
@@ -83,12 +84,12 @@ app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
   if (err.kind === 'ObjectId') {
     res.status(400).send({
-      message: 'Неверно переданы данные',
+      message: 'Неверно переданы данные.',
     });
   } else {
     res.status(statusCode).send({
       message: statusCode === 500
-        ? 'На сервере произошла ошибка'
+        ? 'На сервере произошла ошибка.'
         : message,
     });
   }

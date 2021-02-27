@@ -6,7 +6,7 @@ class Auth {
 
   _handleOriginalResponse(res) {
     if (!res.ok) {
-      return Promise.reject(`Error: ${res.status}`);
+      return Promise.reject(`Ошибка: ${res.status}.`);
     }
     return res.json();
   }
