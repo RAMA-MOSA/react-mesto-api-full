@@ -5,16 +5,16 @@ import Footer from '../Footer/Footer';
 import EditProfilePopup from '../EditProfilePopup/EditProfilePopup';
 import EditAvatarPopup from '../EditAvatarPopup/EditAvatarPopup';
 import AddPlacePopup from '../AddPlacePopup/AddPlacePopup';
-import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
-import ImagePopup from '../ImagePopup/ImagePopup';
-import Login from '../Login/Login';
-import Register from '../Register/Register';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import ImagePopup from '../ImagePopup/ImagePopup';
+import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
+import Login from '../Login/Login';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import api from '../../utils/api';
 import auth from '../../utils/auth';
-import { Route, Switch, useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { Route, Switch, useHistory } from 'react-router-dom';
+import Register from '../Register/Register';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);

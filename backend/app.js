@@ -1,19 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cardsRoutes = require('./routes/cards');
-const usersRoutes = require('./routes/users');
-const ErrorFound = require('./errors/error-found');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 require('dotenv').config();
+const bodyParser = require('body-parser');
 // eslint-disable-next-line import/order
 const cors = require('cors');
 // eslint-disable-next-line import/order
 const { errors, celebrate, Joi } = require('celebrate');
-const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
+const { createUser, login } = require('./controllers/users');
+const cardsRoutes = require('./routes/cards');
+const usersRoutes = require('./routes/users');
+const ErrorFound = require('./errors/error-found');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
+
 const allowedCors = [
   'https://m-s.students.nomoredomains.icu',
   'https://api.m-s.students.nomoredomains.icu',

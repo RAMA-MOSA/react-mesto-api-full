@@ -7,17 +7,6 @@ const {
 
 usersRouter.get('/users', getUsers);
 
-usersRouter.get(
-  '/users/:id',
-  celebrate({
-    params: Joi.object().keys({
-      id: Joi.string().required().hex().min(24)
-        .max(24),
-    }),
-  }),
-  getUserById,
-);
-
 usersRouter.get('/users/me', getCurrentUser);
 
 usersRouter.patch(
@@ -40,6 +29,17 @@ usersRouter.patch(
     }),
   }),
   updateAvatar,
+);
+
+usersRouter.get(
+  '/users/:id',
+  celebrate({
+    params: Joi.object().keys({
+      id: Joi.string().required().hex().min(24)
+        .max(24),
+    }),
+  }),
+  getUserById,
 );
 
 module.exports = usersRouter;
