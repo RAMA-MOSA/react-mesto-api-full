@@ -92,7 +92,7 @@ class Api {
 };
 
 const api = new Api({
-    baseUrl: 'https://api.m-s.students.nomoredomains.icu',
+    baseUrl: 'http://api.m-s.students.nomoredomains.icu',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
