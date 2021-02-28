@@ -34,14 +34,14 @@ class Api {
     };
 
     deleteLike(id, token){
-        return fetch(`${this._url}/cards/likes/${id}`, {
+        return fetch(`${this._url}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: { ...this._headers, Authorization: `Bearer ${token}` },
         }).then(this._handleResponse)
     };
 
     addLike(id, token){
-        return fetch(`${this._url}/cards/likes/${id}`, {
+        return fetch(`${this._url}/cards/${id}/likes`, {
             method: 'PUT',
             headers: { ...this._headers, Authorization: `Bearer ${token}` },
         }).then(this._handleResponse)
