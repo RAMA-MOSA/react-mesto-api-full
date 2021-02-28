@@ -10,7 +10,7 @@ const auth = require('./middlewares/auth');
 const { createUser, login } = require('./controllers/users');
 const cardsRoutes = require('./routes/cards');
 const usersRoutes = require('./routes/users');
-const ErrorFound = require('./errors/error-found');
+const pageNotFoundErrorRoutes = require('./routes/pageNotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
@@ -75,9 +75,7 @@ app.use(auth);
 
 app.use('/', cardsRoutes);
 app.use('/', usersRoutes);
-app.all('*', () => {
-  throw new ErrorFound('Запрашиваемый ресурс не найден.');
-});
+app.use('/*', pageNotFoundErrorRoutes);
 
 app.use(errorLogger);
 app.use(errors());
