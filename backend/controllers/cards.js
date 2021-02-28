@@ -54,7 +54,7 @@ const likeCard = (req, res, next) => {//пересмотреть этот бло
     .then((user) => {
       Card.findByIdAndUpdate(
         { _id: cardId },
-        { $addToSet: { likes: user.id } },
+        { $push: { likes: user } },
         { new: true },
       )
         .then((card) => {
