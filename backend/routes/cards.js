@@ -29,8 +29,8 @@ cardsRouter.delete(
   deleteCard,
 );
 
-cardsRouter.put(
-  '/cards/:cardId/likes',
+cardsRouter.put(//пересмотреть
+  '/cards/likes/:cardId',
   celebrate({
     body: Joi.object().keys({
       cardId: Joi.string().hex().length(24),
@@ -39,8 +39,8 @@ cardsRouter.put(
   likeCard,
 );
 
-cardsRouter.delete(
-  '/cards/:cardId/likes',
+cardsRouter.delete(//тоже
+  '/cards/likes/:cardId',
   celebrate({
     body: Joi.object().keys({
       cardId: Joi.string().hex().length(24),
