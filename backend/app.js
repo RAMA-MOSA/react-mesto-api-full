@@ -83,10 +83,12 @@ app.use(errorLogger);
 app.use(errors());
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
-  if (err.kind === 'ObjectId') {
-    res.status(400).send({
-      message: 'Неверно переданы данные.',
-    });
+  if (err.name === 'MongoError' && err.code === 11000) {
+    res.status(409).send({ message: 'Пользователь с таким email уже существует.' });
+  } else if (err.message === 'celebrate request validation failed') {
+    res.status(400).send({ message: 'Отправленные данные не прошли валидацию.' });
+  } else if (err.name === 'CastError') {
+    res.status(400).send({ message: 'Попытка удалить карточку с невалидным id.' });
   } else {
     res.status(statusCode).send({
       message: statusCode === 500

@@ -1,7 +1,7 @@
 {
   "name": "express-mesto",
   "version": "1.0.0",
-  "description": "`/public` — статика, полученная в результате билда фронтенд-приложения на Реакте  \r `/data` — JSON-файлы для временной эмуляции работы с базой данных  \r `/routes` — папка с файлами роутера",
+  "description": "Сервер для работы проекта \"Mesto\".",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/RAMA-MOSA/express-mesto.git"
   },
-  "author": "",
+  "author": "Savitskaya Svetlana",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RAMA-MOSA/express-mesto/issues"

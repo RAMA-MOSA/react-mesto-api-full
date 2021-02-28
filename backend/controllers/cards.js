@@ -7,6 +7,9 @@ const ErrorForbidden = require('../errors/error-forbidden');
 const getCards = (req, res, next) => {
   Card.find({})
     .then((cards) => {
+      if (!cards) {
+        throw new ErrorFound('Карточка с таким id не найдена.');
+      }
       res.status(200).send(cards);
     })
     .catch(next);
@@ -47,7 +50,7 @@ const deleteCard = (req, res, next) => {
     .catch(next);
 };
 
-const likeCard = (req, res, next) => {//пересмотреть этот блок
+const likeCard = (req, res, next) => {
   // eslint-disable-next-line prefer-destructuring
   const { cardId } = req.params;
   User.findById(req.user._id)
@@ -58,6 +61,9 @@ const likeCard = (req, res, next) => {//пересмотреть этот бло
         { new: true },
       )
         .then((card) => {
+          if (!card) {
+            throw new ErrorFound('Карточка с таким id не найдена.');
+          }
           res.status(200).send(card);
         })
         .catch(next);
@@ -65,7 +71,7 @@ const likeCard = (req, res, next) => {//пересмотреть этот бло
     .catch(next);
 };
 
-const dislikeCard = (req, res, next) => {//и этот
+const dislikeCard = (req, res, next) => {
   // eslint-disable-next-line prefer-destructuring
   const { cardId } = req.params;
   User.findById(req.user._id)
@@ -76,6 +82,9 @@ const dislikeCard = (req, res, next) => {//и этот
         { new: true },
       )
         .then((card) => {
+          if (!card) {
+            throw new ErrorFound('Карточка с таким id не найдена.');
+          }
           res.status(200).send(card);
         })
         .catch(next);

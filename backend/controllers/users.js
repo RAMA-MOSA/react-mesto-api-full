@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const ErrorFound = require('../errors/error-found');
 const ErrorRequest = require('../errors/error-request');
-const ErrorAuth = require('../errors/error-auth');
 const ErrorConflict = require('../errors/error-conflict');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
@@ -11,6 +10,9 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
+      if (!users) {
+        throw new ErrorFound('Нет пользователей в базе данных.');
+      }
       res.status(200).send(users);
     })
     .catch(next);
@@ -33,6 +35,9 @@ const updateCurrentUser = (req, res, next) => {
     },
   )
     .then((user) => {
+      if (!user) {
+        throw new ErrorFound('Нет пользователя с таким id.');
+      }
       res.status(200).send(user);
     })
     .catch((err) => {
@@ -55,6 +60,9 @@ const updateAvatar = (req, res, next) => {
     },
   )
     .then((user) => {
+      if (!user) {
+        throw new ErrorFound('Нет пользователя с таким id.');
+      }
       res.status(200).send(user);
     })
     .catch((err) => {
@@ -123,7 +131,7 @@ const login = (req, res, next) => {
       res.send({ token });
     })
     .catch((err) => {
-      throw new ErrorAuth(err.message);
+      throw new ErrorFound(err.message);
     })
     .catch(next);
 };
