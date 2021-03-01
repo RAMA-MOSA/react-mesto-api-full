@@ -75,11 +75,16 @@ const updateAvatar = (req, res, next) => {
 
 const getUserById = (req, res, next) => {
   User.findById(req.params.id)
-    .orFail(new ErrorFound('Нет пользователя с таким id.'))
     .then((user) => {
+      if (!user) {
+        throw new ErrorFound('Нет пользователя с таким id.');
+      }
       res.status(200).send(user);
     })
     .catch((err) => {
+      if (err.code === 504) {
+        throw new ErrorFound('Нет пользователя с таким id.');
+      }
       if (err.name === 'CastError') {
         throw new ErrorRequest(err.message);
       }
