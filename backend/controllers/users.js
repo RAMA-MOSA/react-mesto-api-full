@@ -82,9 +82,6 @@ const getUserById = (req, res, next) => {
       res.status(200).send(user);
     })
     .catch((err) => {
-      if (err.code === 504) {
-        throw new ErrorFound('Нет пользователя с таким id.');
-      }
       if (err.name === 'CastError') {
         throw new ErrorRequest(err.message);
       }
