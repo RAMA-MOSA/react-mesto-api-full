@@ -84,6 +84,8 @@ const getUserById = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'CastError') {
         throw new ErrorRequest(err.message);
+      } else {
+        throw new ErrorFound('Нет пользователя с таким id.');
       }
     })
     .catch(next);
