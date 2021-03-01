@@ -75,10 +75,8 @@ const updateAvatar = (req, res, next) => {
 
 const getUserById = (req, res, next) => {
   User.findById(req.params.id)
+    .orFail(new ErrorFound('Нет пользователя с таким id.'))
     .then((user) => {
-      if (!user) {
-        throw new ErrorFound('Нет пользователя с таким id.');
-      }
       res.status(200).send(user);
     })
     .catch((err) => {
