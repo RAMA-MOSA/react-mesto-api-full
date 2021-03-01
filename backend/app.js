@@ -2,9 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const bodyParser = require('body-parser');
-// eslint-disable-next-line import/order
+
+const jsonParser = bodyParser.json();
 const cors = require('cors');
-// eslint-disable-next-line import/order
 const { errors, celebrate, Joi } = require('celebrate');
 const auth = require('./middlewares/auth');
 const { createUser, login } = require('./controllers/users');
@@ -51,7 +51,7 @@ app.post(
       email: Joi.string().required().email(),
       password: Joi.string().required().min(8).max(30),
     }),
-  }),
+  }), jsonParser,
   login,
 );
 
@@ -67,7 +67,7 @@ app.post(
       avatar: Joi.string()
         .regex(/^(https?:\/\/)?([\da-z.-]+).([a-z.]{2,6})([/\w.-]*)*\/?$/),
     }),
-  }),
+  }), jsonParser,
   createUser,
 );
 
